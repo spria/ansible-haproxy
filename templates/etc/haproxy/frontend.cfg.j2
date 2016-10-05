@@ -32,7 +32,7 @@ frontend {{ frontend.name }}
 {% endfor %}
 
 {% for acl in frontend.acl | default([]) %}
-  acl {{ acl.string }}
+  acl {{ acl }}
 {% endfor %}
 
 {% for capture in frontend.capture | default([]) %}
@@ -64,9 +64,9 @@ frontend {{ frontend.name }}
 
 {% endfor %}
 
-{% if frontend.use_backend is defined %}
-  use_backend {{ frontend.use_backend }}
-{% endif %}
+{% for use_backend in frontend.use_backend | default([]) %}
+  use_backend {{ use_backend }}
+{% endfor %}
 
   default_backend {{ frontend.default_backend }}
 
